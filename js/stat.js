@@ -9,7 +9,6 @@ window.renderStatistics = function (ctx, names, times) {
 
 
   var connectPoints = function (arrayOfPoints, shift, сtx) {
-    сtx = сtx;
     arrayOfPoints = arrayOfPoints || [];
     shift = shift || 0;
     for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
@@ -18,7 +17,6 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   var drawShape = function (color, startPoints, arrayOfPoints, shift, сtx) {
-    сtx = сtx;
     ctx.fillStyle = color || '#000000';
     startPoints = startPoints || [];
     arrayOfPoints = arrayOfPoints || [];
@@ -26,7 +24,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(startPoints[0], startPoints[1]);
-    connectPoints(arrayOfPoints, shift);
+    connectPoints(arrayOfPoints, shift, ctx);
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
@@ -82,7 +80,7 @@ window.renderStatistics = function (ctx, names, times) {
     }
   };
 
-  var drawHistogram = function (arrayOfNames, arrayOfTimes) {
+  var drawHistogram = function (arrayOfNames, arrayOfTimes, ctx) {
     writeTimeAndName(arrayOfNames, arrayOfTimes, ctx);
     drawRect(arrayOfNames, arrayOfTimes, ctx);
   };
