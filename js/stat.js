@@ -80,7 +80,7 @@ window.renderStatistics = function (ctx, names, times) {
     }
   };
 
-  var drawHistogram = function (arrayOfNames, arrayOfTimes, ctx) {
+  var drawHistogram = function (arrayOfNames, arrayOfTimes) {
     writeTimeAndName(arrayOfNames, arrayOfTimes, ctx);
     drawRect(arrayOfNames, arrayOfTimes, ctx);
   };
