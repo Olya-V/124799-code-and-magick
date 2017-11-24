@@ -8,7 +8,7 @@ window.renderStatistics = function (context, names, times) {
     [160, 10], [160, 0], [200, 0]];
 
 
-  var connectPoints = function (arrayOfPoints, shift, сtx) {
+  var connectPoints = function (arrayOfPoints, shift, ctx) {
     arrayOfPoints = arrayOfPoints || [];
     shift = shift || 0;
     for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
@@ -16,7 +16,7 @@ window.renderStatistics = function (context, names, times) {
     }
   };
 
-  var drawShape = function (color, startPoints, arrayOfPoints, shift, сtx) {
+  var drawShape = function (color, startPoints, arrayOfPoints, shift, ctx) {
     ctx.fillStyle = color || '#000000';
     startPoints = startPoints || [];
     arrayOfPoints = arrayOfPoints || [];
@@ -30,14 +30,14 @@ window.renderStatistics = function (context, names, times) {
     ctx.fill();
   };
 
-  var writeText = function (text, startPointX, startPointY, сtx, color, font, baseline) {
+  var writeText = function (text, startPointX, startPointY, ctx, color, font, baseline) {
     ctx.fillStyle = color || '#000000';
     ctx.font = font || '16px PT Mono';
     ctx.textBaseLine = baseline || 'hanging';
     ctx.fillText(text, startPointX, startPointY);
   };
 
-  var writeTimeAndName = function (arrayOfNames, arrayOfTimes, сtx, startPointX, startPointY, widthRect, spaceBetweenRect, heightRatio) {
+  var writeTimeAndName = function (arrayOfNames, arrayOfTimes, ctx, startPointX, startPointY, widthRect, spaceBetweenRect, heightRatio) {
     arrayOfNames = arrayOfNames || [];
     arrayOfTimes = arrayOfTimes || [];
     startPointX = startPointX || 150;
@@ -57,7 +57,7 @@ window.renderStatistics = function (context, names, times) {
     }
   };
 
-  var drawRect = function (arrayOfNames, arrayOfTimes, сtx, startPointX, startPointY, widthRect, spaceBetweenRect, heightRatio) {
+  var drawRect = function (arrayOfNames, arrayOfTimes, ctx, startPointX, startPointY, widthRect, spaceBetweenRect, heightRatio) {
     arrayOfNames = arrayOfNames || [];
     arrayOfTimes = arrayOfTimes || [];
     startPointX = startPointX || 150;
