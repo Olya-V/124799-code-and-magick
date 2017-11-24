@@ -30,7 +30,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fill();
   };
 
-  var writeText = function (text, startPointX, startPointY, color, font, baseline, сtx) {
+  var writeText = function (text, startPointX, startPointY, сtx, color, font, baseline) {
     ctx.fillStyle = color || '#000000';
     ctx.font = font || '16px PT Mono';
     ctx.textBaseLine = baseline || 'hanging';
@@ -52,8 +52,8 @@ window.renderStatistics = function (ctx, names, times) {
       var heightRect = timeInSek * heightRatio;
       var positionYRect = startPointY - heightRect;
       var positionYTime = positionYRect - 10;
-      ctx.fillText(arrayOfNames[i], positionX, 260);
-      ctx.fillText(timeInSek.toFixed(2) + 'с', positionX, positionYTime);
+      writeText(arrayOfNames[i], positionX, 260, ctx);
+      writeText(timeInSek.toFixed(2) + 'с', positionX, positionYTime, ctx);
     }
   };
 
@@ -80,14 +80,14 @@ window.renderStatistics = function (ctx, names, times) {
     }
   };
 
-  var drawHistogram = function (arrayOfNames, arrayOfTimes) {
-    writeTimeAndName(arrayOfNames, arrayOfTimes);
-    drawRect(arrayOfNames, arrayOfTimes);
+  var drawHistogram = function (arrayOfNames, arrayOfTimes, ctx) {
+    writeTimeAndName(arrayOfNames, arrayOfTimes, ctx);
+    drawRect(arrayOfNames, arrayOfTimes, ctx);
   };
 
-  drawShape('rgba(0, 0, 0, 0.7)', [200, 10], cloudPoints, 10);
-  drawShape('#d7ecfd', [200, 10], cloudPoints, 0);
-  writeText('Ура вы победили!', 120, 70);
-  writeText('Список результатов:', 120, 95);
-  drawHistogram(names, times);
+  drawShape('rgba(0, 0, 0, 0.7)', [200, 10], cloudPoints, 10, ctx);
+  drawShape('#d7ecfd', [200, 10], cloudPoints, 0, ctx);
+  writeText('Ура вы победили!', 120, 70, ctx);
+  writeText('Список результатов:', 120, 95, ctx);
+  drawHistogram(names, times, ctx);
 };
