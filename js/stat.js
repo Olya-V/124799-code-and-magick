@@ -1,5 +1,5 @@
 'use strict';
-window.renderStatistics = function (ctx, names, times) {
+window.renderStatistics = function (context, names, times) {
   var cloudPoints = [[220, 10], [220, 20], [230, 20], [230, 30], [240, 30], [240, 40], [260, 40], [260, 30], [280, 30], [280, 20], [290, 20],
     [290, 10], [300, 10], [300, 0], [320, 0], [320, 10], [330, 10], [330, 20], [340, 20], [340, 10], [350, 10], [350, 20],
     [360, 20], [360, 30], [380, 30], [380, 20], [390, 20], [390, 10], [400, 10], [400, 0], [430, 0], [430, 10], [460, 10],
@@ -85,9 +85,9 @@ window.renderStatistics = function (ctx, names, times) {
     drawRect(arrayOfNames, arrayOfTimes, ctx);
   };
 
-  drawShape('rgba(0, 0, 0, 0.7)', [200, 10], cloudPoints, 10, ctx);
-  drawShape('#d7ecfd', [200, 10], cloudPoints, 0, ctx);
-  writeText('Ура вы победили!', 120, 70, ctx);
-  writeText('Список результатов:', 120, 95, ctx);
-  drawHistogram(names, times, ctx);
+  drawShape('rgba(0, 0, 0, 0.7)', [200, 10], cloudPoints, 10, context);
+  drawShape('#d7ecfd', [200, 10], cloudPoints, 0, context);
+  writeText('Ура вы победили!', 120, 70, context);
+  writeText('Список результатов:', 120, 95, context);
+  drawHistogram(names, times, context);
 };
