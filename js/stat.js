@@ -10,7 +10,7 @@ window.renderStatistics = function (ctx, names, times) {
   var connectPoints = function (arrayOfPoints, shift) {
     for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
       ctx.lineTo(arrayOfPoints[i][0] + shift, arrayOfPoints[i][1] + shift);
-    };
+    }
   };
 
   var drawShape = function (color, startPoints, arrayOfPoints, shift) {
@@ -45,8 +45,8 @@ window.renderStatistics = function (ctx, names, times) {
       var positionYTime = positionYRect - 10;
       ctx.fillText(arrayOfNames[i], positionX, 260);
       ctx.fillText(timeInSek.toFixed(2) + 'с', positionX, positionYTime);
-    };
-  }
+    }
+  };
 
   var drawRect = function (arrayOfNames, arrayOfTimes) {
     for (var i = 0; i <= arrayOfNames.length - 1; i++) {
@@ -60,8 +60,8 @@ window.renderStatistics = function (ctx, names, times) {
         ctx.fillStyle = 'rgba(255, 0, 0, 1)';
       }
       ctx.fillRect(positionX, (positionYRect), widthRect, heightRect);
-    };
-  }
+    }
+  };
 
   var drawHistogram = function (arrayOfNames, arrayOfTimes) {
     writeTimeAndName(arrayOfNames, arrayOfTimes);
@@ -69,7 +69,7 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   drawShape('rgba(0, 0, 0, 0.7)', [200, 10], cloudPoints, 10);
-  drawShape('#d7ecfd',[200, 10], cloudPoints, 0);
+  drawShape('#d7ecfd', [200, 10], cloudPoints, 0);
   writeText('Ура вы победили!', 120, 70);
   writeText('Список результатов:', 120, 95);
   drawHistogram(names, times);
