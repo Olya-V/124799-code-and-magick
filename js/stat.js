@@ -8,7 +8,19 @@ window.renderStatistics = function (ctx, names, times) {
     [160, 10], [160, 0], [200, 0]];
 
 
+  var connectPoints = function (arrayOfPoints, shift, сtx) {
+    var arrayOfPoints = arrayOfPoints || [];
+    var shift = shift || 0;
+    for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
+      ctx.lineTo(arrayOfPoints[i][0] + shift, arrayOfPoints[i][1] + shift);
+    }
+  };
+
   var drawShape = function (color, startPoints, arrayOfPoints, shift, сtx) {
+    ctx.fillStyle = color || '#000000';
+    var startPoints = startPoints || [];
+    var arrayOfPoints = arrayOfPoints || [];
+    var shift = shift || 0;
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(startPoints[0], startPoints[1]);
@@ -18,11 +30,6 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fill();
   };
 
-  var connectPoints = function (arrayOfPoints, shift, сtx) {
-    for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
-      ctx.lineTo(arrayOfPoints[i][0] + shift, arrayOfPoints[i][1] + shift);
-    }
-  };
 
   var writeText = function (text, startPointX, startPointY, color, font, baseline, сtx) {
     ctx.fillStyle = color || '#000000';
