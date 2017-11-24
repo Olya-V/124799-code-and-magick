@@ -9,6 +9,7 @@ window.renderStatistics = function (ctx, names, times) {
 
 
   var connectPoints = function (arrayOfPoints, shift, сtx) {
+    сtx = сtx;
     arrayOfPoints = arrayOfPoints || [];
     shift = shift || 0;
     for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
@@ -17,6 +18,7 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   var drawShape = function (color, startPoints, arrayOfPoints, shift, сtx) {
+    сtx = сtx;
     ctx.fillStyle = color || '#000000';
     startPoints = startPoints || [];
     arrayOfPoints = arrayOfPoints || [];
