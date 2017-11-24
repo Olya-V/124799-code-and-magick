@@ -7,13 +7,8 @@ window.renderStatistics = function (ctx, names, times) {
     [500, 260], [500, 270], [120, 270], [120, 260], [110, 260], [110, 250], [100, 250], [100, 60], [100, 60], [100, 40], [120, 30], [130, 30], [130, 20], [140, 20], [140, 10],
     [160, 10], [160, 0], [200, 0]];
 
-  var connectPoints = function (arrayOfPoints, shift) {
-    for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
-      ctx.lineTo(arrayOfPoints[i][0] + shift, arrayOfPoints[i][1] + shift);
-    }
-  };
 
-  var drawShape = function (color, startPoints, arrayOfPoints, shift) {
+  var drawShape = function (color, startPoints, arrayOfPoints, shift, сtx) {
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(startPoints[0], startPoints[1]);
@@ -23,20 +18,28 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fill();
   };
 
-  var writeText = function (text, startPointX, startPointY, color, font, baseline) {
+  var connectPoints = function (arrayOfPoints, shift, сtx) {
+    for (var i = 0; i <= arrayOfPoints.length - 1; i++) {
+      ctx.lineTo(arrayOfPoints[i][0] + shift, arrayOfPoints[i][1] + shift);
+    }
+  };
+
+  var writeText = function (text, startPointX, startPointY, color, font, baseline, сtx) {
     ctx.fillStyle = color || '#000000';
     ctx.font = font || '16px PT Mono';
     ctx.textBaseLine = baseline || 'hanging';
     ctx.fillText(text, startPointX, startPointY);
   };
 
-  var widthRect = 40;
-  var heightRatio = 10;
-  var spaceBetweenRect = 50;
-  var startPointX = 150;
-  var startPointY = 230;
+  var writeTimeAndName = function (arrayOfNames, arrayOfTimes, сtx, startPointX, startPointY, widthRect, spaceBetweenRect,heightRatio) {
+    var arrayOfNames = arrayOfNames || [];
+    var arrayOfTimes = arrayOfTimes || [];
+    var startPointX = startPointX || 150;
+    var startPointY = startPointY || 230;
+    var widthRect = widthRect || 40;
+    var spaceBetweenRect = spaceBetweenRect || 50;
+    var heightRatio = heightRatio || 10;
 
-  var writeTimeAndName = function (arrayOfNames, arrayOfTimes) {
     for (var i = 0; i <= arrayOfNames.length - 1; i++) {
       var positionX = startPointX + (widthRect + spaceBetweenRect) * i;
       var timeInSek = arrayOfTimes[i] / 1000;
@@ -48,7 +51,15 @@ window.renderStatistics = function (ctx, names, times) {
     }
   };
 
-  var drawRect = function (arrayOfNames, arrayOfTimes) {
+  var drawRect = function (arrayOfNames, arrayOfTimes, сtx, startPointX, startPointY, widthRect, spaceBetweenRect, heightRatio) {
+    var arrayOfNames = arrayOfNames || [];
+    var arrayOfTimes = arrayOfTimes || [];
+    var startPointX = startPointX || 150;
+    var startPointY = startPointY || 230;
+    var widthRect = widthRect || 40;
+    var spaceBetweenRect = spaceBetweenRect || 50;
+    var heightRatio = heightRatio || 10;
+
     for (var i = 0; i <= arrayOfNames.length - 1; i++) {
       var positionX = startPointX + (widthRect + spaceBetweenRect) * i;
       var timeInSek = arrayOfTimes[i] / 1000;
