@@ -37,7 +37,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(text, startPointX, startPointY);
   };
 
-  var writeTimeAndName = function (arrayOfNames, arrayOfTimes, сtx, startPointX, startPointY, widthRect, spaceBetweenRect,heightRatio) {
+  var writeTimeAndName = function (arrayOfNames, arrayOfTimes, сtx, startPointX, startPointY, widthRect, spaceBetweenRect, heightRatio) {
     arrayOfNames = arrayOfNames || [];
     arrayOfTimes = arrayOfTimes || [];
     startPointX = startPointX || 150;
