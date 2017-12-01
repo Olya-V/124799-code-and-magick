@@ -4,8 +4,6 @@ var showSetup = function () {
   setup.classList.remove('hidden');
 };
 
-showSetup();
-
 var wizard = {
   'name': function () {
     var names = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -31,11 +29,9 @@ var wizard = {
   }
 };
 
-var createWizzards = function (numberOfWizards, wizardObject) {
+var createWizardAttributes = function (numberOfWizards, wizardObject) {
   var template = document.querySelector('#similar-wizard-template');
   var fragment = document.createDocumentFragment();
-  var list = document.querySelector('.setup-similar-list');
-  var similar = document.querySelector('.setup-similar');
   for (var i = 1; i <= numberOfWizards; i++) {
     var newWizard = template.content.cloneNode(true);
     var name = newWizard.querySelector('.setup-similar-label');
@@ -49,8 +45,16 @@ var createWizzards = function (numberOfWizards, wizardObject) {
     eyesColor.setAttribute('style', newYeys);
     fragment.appendChild(newWizard);
   }
+};
+
+var createWizzards = function (numberOfWizards, wizardObject) {
+  var fragment = document.createDocumentFragment();
+  var list = document.querySelector('.setup-similar-list');
+  var similar = document.querySelector('.setup-similar');
+  createWizardAttributes(numberOfWizards, wizardObject)();
   list.appendChild(fragment);
   similar.classList.remove('hidden');
 };
 
+showSetup();
 createWizzards(4, wizard);
