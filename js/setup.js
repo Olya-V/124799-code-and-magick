@@ -31,7 +31,7 @@ var wizard = {
   }
 };
 
-var createWizzards = function (numberOfWizards, wizard) {
+var createWizzards = function (numberOfWizards, wizardObject) {
   var template = document.querySelector('#similar-wizard-template');
   var fragment = document.createDocumentFragment();
   var list = document.querySelector('.setup-similar-list');
@@ -41,9 +41,12 @@ var createWizzards = function (numberOfWizards, wizard) {
     var name = newWizard.querySelector('.setup-similar-label');
     var coatColor = newWizard.querySelector('.wizard-coat');
     var eyesColor = newWizard.querySelector('.wizard-eyes');
-    name.textContent = 'wizard.name()';
-    coatColor.setAttribute('style', 'fill: wizard.coatColor()');
-    eyesColor.setAttribute('style', 'fill: wizard.eyesColor()');
+    var newName = wizardObject.name();
+    var newCoat = wizardObject.coatColor();
+    var newYeys = wizardObject.eyesColor();
+    name.textContent = newName;
+    coatColor.setAttribute('style', 'fill: newCoat');
+    eyesColor.setAttribute('style', 'fill: newYeys');
     fragment.appendChild(newWizard);
   }
   list.appendChild(fragment);
