@@ -42,11 +42,11 @@ var createWizzards = function (numberOfWizards, wizardObject) {
     var coatColor = newWizard.querySelector('.wizard-coat');
     var eyesColor = newWizard.querySelector('.wizard-eyes');
     var newName = wizardObject.name();
-    var newCoat = wizardObject.coatColor();
-    var newYeys = wizardObject.eyesColor();
+    var newCoat = 'fill: ' + wizardObject.coatColor();
+    var newYeys = 'fill: ' + wizardObject.eyesColor();
     name.textContent = newName;
-    coatColor.setAttribute('style', 'fill: newCoat');
-    eyesColor.setAttribute('style', 'fill: newYeys');
+    coatColor.setAttribute('style', newCoat);
+    eyesColor.setAttribute('style', newYeys);
     fragment.appendChild(newWizard);
   }
   list.appendChild(fragment);
