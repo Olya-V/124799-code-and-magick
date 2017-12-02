@@ -29,7 +29,7 @@ var wizard = {
   }
 };
 
-var createWizardAttributes = function (numberOfWizards, wizardObject) {
+/*var createWizardAttributes = function (numberOfWizards, wizardObject) {
   var template = document.querySelector('#similar-wizard-template');
   var fragment = document.createDocumentFragment();
   for (var i = 1; i <= numberOfWizards; i++) {
@@ -45,13 +45,26 @@ var createWizardAttributes = function (numberOfWizards, wizardObject) {
     eyesColor.setAttribute('style', newYeys);
     fragment.appendChild(newWizard);
   }
-};
+};*/
 
 var createWizzards = function (numberOfWizards, wizardObject) {
   var fragment = document.createDocumentFragment();
   var list = document.querySelector('.setup-similar-list');
   var similar = document.querySelector('.setup-similar');
-  createWizardAttributes(numberOfWizards, wizardObject)();
+  var template = document.querySelector('#similar-wizard-template');
+  for (var i = 1; i <= numberOfWizards; i++) {
+    var newWizard = template.content.cloneNode(true);
+    var name = newWizard.querySelector('.setup-similar-label');
+    var coatColor = newWizard.querySelector('.wizard-coat');
+    var eyesColor = newWizard.querySelector('.wizard-eyes');
+    var newName = wizardObject.name();
+    var newCoat = 'fill: ' + wizardObject.coatColor();
+    var newYeys = 'fill: ' + wizardObject.eyesColor();
+    name.textContent = newName;
+    coatColor.setAttribute('style', newCoat);
+    eyesColor.setAttribute('style', newYeys);
+    fragment.appendChild(newWizard);
+  }
   list.appendChild(fragment);
   similar.classList.remove('hidden');
 };
