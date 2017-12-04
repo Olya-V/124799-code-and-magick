@@ -3,6 +3,7 @@ var names = ['Иван', 'Хуан Себастьян', 'Мария', 'Крис�
 var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
+
 /**
  * @description генерирует случайное число от min до max числа, включая max число.
  * @param {number} min
@@ -12,6 +13,7 @@ var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
 var randomNumber = function (min, max) {
   return Math.floor(min + Math.random() * (max - min));
 };
+
 /**
  * @description показывает блок .setup.
  */
@@ -19,6 +21,7 @@ var showSetup = function () {
   var setup = document.querySelector('.setup');
   setup.classList.remove('hidden');
 };
+
 /**
  * @description показывает блок .setup-similar
  */
@@ -26,6 +29,7 @@ var showSimilar = function () {
   var similar = document.querySelector('.setup-similar');
   similar.classList.remove('hidden');
 };
+
 /**
  * @description создает объект волшебник со свойствами имя, цвет мантии и цвет глаз.
  * @return {object} {{wizardName: string, coatColor: string, eyesColor: string}}
@@ -40,6 +44,7 @@ var wizard = function () {
     'eyesColor': eyesColor
   };
 };
+
 /**
  * @description создает заданное количество волшебников и помещает их во фрагемент.
  * @param {number} numberOfWizards сколько волшебников создать.
@@ -69,6 +74,7 @@ var generateWizards = function (numberOfWizards) {
   }
   return fragment;
 };
+
 /**
  * @description отображает созданных волшебников в списке похожих персонажей.
  * Для отрисовки персонажей со случайными свойствами вызывается функция @generateWizards.
@@ -81,5 +87,5 @@ var showWizards = function (numberOfWizards) {
   list.appendChild(fragment);
   showSimilar();
 };
-showWizards(4);
 
+showWizards(4);
