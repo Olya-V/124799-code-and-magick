@@ -13,75 +13,11 @@ var randomNumber = function (min, max) {
   return Math.floor(min + Math.random() * (max - min));
 };
 /**
- * @description объект волшебник состоит из свойств имя, цвет мантии и цвет глаз.
- * Свойство name:
- * Имя состоит из имени и фамилии.
- * Имя выводится из массива имен @see names,
- * идекс элемента с именем определяется рандомно функцией @randomNumber от 0 до длинны массива.
- * Фамилия выводится из массива фамилий @see surnames,
- * идекс элемента с фамилией определяется рандомно функцией @randomNumber от 0 до длинны массива.
- * Имя и фамилия выводятся в рандомном порядке через пробел.
- * Свойство coatColor:
- * цвет выводится из массива цветов @see coatColors,
- * идекс элемента с цветом определяется рандомно функцией @randomNumber от 0 до длинны массива.
- * Свойство eyesColor:
- * цвет выводится из массива цветов @see eyesColors,
- * идекс элемента с цветом определяется рандомно функцией @randomNumber от 0 до длинны массива.
- * @type {object}
- */
-var wizard = {
-  'name': function () {
-    return [names[randomNumber(0, names.length)], surnames[randomNumber(0, surnames.length)]].sort().join(' ');
-  },
-  'coatColor': function () {
-    return coatColors[randomNumber(0, coatColors.length - 1)];
-  },
-  'eyesColor': function () {
-    return eyesColors[randomNumber(0, eyesColors.length - 1)];
-  }
-};
-/**
  * @description показывает блок .setup.
  */
 var showSetup = function () {
   var setup = document.querySelector('.setup');
   setup.classList.remove('hidden');
-};
-/**
- * @description на основе шаблона генерирует заданное число волшебников со свойствами переданного объекта.
- * @param {number} numberOfWizards число необходимых волшебников
- * @param {object} wizardObject объект волшебник со свовами name, coatColor, eyesColor.
- * @return {DocumentFragment} фрагмент заполненный сгенерированными волшебниками.
- */
-var generateWizardAttributes = function (numberOfWizards, wizardObject) {
-  var fragment = document.createDocumentFragment();
-  var template = document.querySelector('#similar-wizard-template');
-  for (var i = 1; i <= numberOfWizards; i++) {
-    var newWizard = template.content.cloneNode(true);
-    var name = newWizard.querySelector('.setup-similar-label');
-    var coatColor = newWizard.querySelector('.wizard-coat');
-    var eyesColor = newWizard.querySelector('.wizard-eyes');
-    var newName = wizardObject.name();
-    var newCoat = 'fill: ' + wizardObject.coatColor();
-    var newEyes = 'fill: ' + wizardObject.eyesColor();
-    name.textContent = newName;
-    coatColor.setAttribute('style', newCoat);
-    eyesColor.setAttribute('style', newEyes);
-    fragment.appendChild(newWizard);
-  }
-  return fragment;
-};
-/**
- * @description отображает созданных волшебников в списке похожих персонажей.
- * Для отрисовки персонажей со случайными свойствами вызывается функция @generateWizardAttributes,
- * для работы которой передаются параметры.
- * @param {number} numberOfWizards
- * @param {object} wizardObject
- */
-var showWizards = function (numberOfWizards, wizardObject) {
-  var list = document.querySelector('.setup-similar-list');
-  var fragment = generateWizardAttributes(numberOfWizards, wizardObject);
-  list.appendChild(fragment);
 };
 /**
  * @description показывает блок .setup-similar
@@ -90,6 +26,61 @@ var showSimilar = function () {
   var similar = document.querySelector('.setup-similar');
   similar.classList.remove('hidden');
 };
-showSetup();
-showWizards(4, wizard);
-showSimilar();
+/**
+ * @description создает объект волшебник со свойствами имя, цвет мантии и цвет глаз.
+ * @return {object} {{wizardName: string, coatColor: string, eyesColor: string}}
+ */
+var wizard = function () {
+  var name = [names[randomNumber(0, names.length)], surnames[randomNumber(0, surnames.length)]].sort().join(' ');
+  var coatColor = coatColors[randomNumber(0, coatColors.length - 1)];
+  var eyesColor = eyesColors[randomNumber(0, eyesColors.length - 1)];
+  return {
+    'wizardName': name,
+    'coatColor': coatColor,
+    'eyesColor': eyesColor
+  };
+};
+/**
+ * @description создает заданное количество волшебников и помещает их во фрагемент.
+ * @param {number} numberOfWizards сколько волшебников создать.
+ * @return {DocumentFragment} фрагмент с волшбениками.
+ */
+var generateWizards = function (numberOfWizards) {
+  var fragment = document.createDocumentFragment();
+  var template = document.querySelector('#similar-wizard-template');
+  for (var i = 1; i <= numberOfWizards; i++) {
+    /* найдем элементы в разметке*/
+    var newWizard = template.content.cloneNode(true);
+    var name = newWizard.querySelector('.setup-similar-label');
+    var coatColor = newWizard.querySelector('.wizard-coat');
+    var eyesColor = newWizard.querySelector('.wizard-eyes');
+    /* создаем волшебника */
+    var item = wizard();
+    /* задаем свойства волшебнику */
+    var newName = item.wizardName;
+    var newCoat = 'fill: ' + item.coatColor;
+    var newEyes = 'fill: ' + item.eyesColor;
+    /* вставляем свойства в разметку шаблона волшебника */
+    name.textContent = newName;
+    coatColor.setAttribute('style', newCoat);
+    eyesColor.setAttribute('style', newEyes);
+    /* присоединяем волшебника во фрагмент похожих персонажей*/
+    fragment.appendChild(newWizard);
+  }
+  return fragment;
+};
+/**
+ * @description отображает созданных волшебников в списке похожих персонажей.
+ * Для отрисовки персонажей со случайными свойствами вызывается функция @generateWizards,
+ * для работы которой передаются параметры.
+ * @param {number} numberOfWizards
+ */
+var showWizards = function (numberOfWizards) {
+  showSetup();
+  var list = document.querySelector('.setup-similar-list');
+  var fragment = generateWizards(numberOfWizards);
+  list.appendChild(fragment);
+  showSimilar();
+};
+showWizards(4);
+
