@@ -71,8 +71,7 @@ var generateWizards = function (numberOfWizards) {
 };
 /**
  * @description отображает созданных волшебников в списке похожих персонажей.
- * Для отрисовки персонажей со случайными свойствами вызывается функция @generateWizards,
- * для работы которой передаются параметры.
+ * Для отрисовки персонажей со случайными свойствами вызывается функция @generateWizards.
  * @param {number} numberOfWizards
  */
 var showWizards = function (numberOfWizards) {
